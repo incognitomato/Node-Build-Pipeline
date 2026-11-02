@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Article - Page Head Title</title>
+  <meta name="description" content="Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum  | Lorem Ipsum">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://yourdomain.com/article" />
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="icon" href="/favicon.ico">
+  <meta property="og:type" content="article">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Article Headline",
+    "description": "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum  | Lorem Ipsum",
+    "inLanguage": "en",
+    "mainEntityOfPage": "https://yourdomain.com/article",
+    "datePublished": "2026-11-01",
+    "dateModified": "2026-11-01",
+    "author": {
+      "@type": "Person",
+      "@id": "https://yourdomain.com/#person",
+      "name": "Lorem Ipsum",
+      "url": "https://yourdomain.com/"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Lorem Ipsum",
+      "url": "https://yourdomain.com/"
+    }    
+  }
+  </script>
+</head>
+<body>
+  <nav class="main-navigation">
+    <div class="nav-left-group">
+        <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+        <label for="menu-toggle" class="menu-close-overlay" aria-hidden="true"></label>
+        <label for="menu-toggle" class="hamburger-icon" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <a href="/" class="home-title" data-menu-name="Homepage">HOMEPAGE</a>
+        <ul class="menu-left">
+            <li>
+                <a href="/" aria-label="Homepage">
+                    <svg width="25" height="18" viewBox="0 0 26 24" fill="none" stroke="currentColor" stroke-width="2.5" class="feather-home-square">
+                        <path d="M13 2L2 12h3v10h16V12h3L13 2z"></path>
+                        <path d="M10 22v-7h6v7"></path>
+                    </svg>
+                </a>
+            </li>
+			<li><a href="/article" aria-label="Article Menu Entry" data-menu-name="Article Menu Entry">Article Menu Entry</a></li>
+        </ul>         
+    </div>
+</nav>
+<div class="container">
+    <header>
+        <p class="kicker" id="active-page-title">Navigation Hub</p>
+    </header>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const pageTitle = document.getElementById("active-page-title");
+    const menuList = document.querySelector('.menu-left');
+    const mainTag = document.querySelector('main');
+    
+    let currentActiveText = "Homepage";
+    if (mainTag && mainTag.hasAttribute('data-page')) {
+        currentActiveText = mainTag.getAttribute('data-page');
+    }
+
+    function setNavpath(text) {
+        pageTitle.textContent = `Retro Computer · ${text}`;
+        pageTitle.style.setProperty('color', 'var(--accent-2)', 'important');
+        pageTitle.style.setProperty('font-weight', 'normal', 'important');            
+    }
+
+    setNavpath(currentActiveText);
+
+    if (menuList) {
+        const menuLinks = menuList.querySelectorAll('a[data-menu-name]');
+        
+        menuLinks.forEach(link => {
+            const menuName = link.getAttribute('data-menu-name');
+            
+            if (menuName.toLowerCase() === currentActiveText.toLowerCase()) {
+                link.classList.add('active-nav-item');
+            }
+
+            link.addEventListener('mouseenter', () => setNavpath(menuName));
+            link.addEventListener('mouseleave', () => setNavpath(currentActiveText));
+        });
+    }
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const navGroup = document.querySelector('.nav-left-group');
+    if (menuToggle && navGroup) {
+        navGroup.addEventListener('mouseleave', () => {
+            if (menuToggle.checked) menuToggle.checked = false;
+        });
+    }
+});
+</script>
+  <main data-page="MENU NAME" class="container">
+  <article>
+    <header>
+      <h1>Main headline</h1>
+      <p class="lead">
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      </p>
+    </header>
+
+    <section>
+      <h2>Secondary headline</h2>
+      <p>
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.      
+      </p>
+
+      <figure>
+        <picture>
+          <source srcset="/images/pet.webp" type="image/webp">
+          <img src="/images/pet.jpg"
+              alt="Alt image description"
+              fetchpriority="high" width="800" height="800">
+        </picture>
+        <figcaption>Image caption.</figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Tables/h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>One</th>
+              <th>Two</th>
+              <th>Three</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>2</td>
+              <td>3</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Numeric list</h2>
+      <ol>
+        <li>Item a</li>
+        <li><strong>Item b</strong></li>
+      </ol>
+    </section>
+
+    <details>
+      <summary>Collapsed list</summary>
+      <ul>
+        <li>[1] <a href="https://www.lorem-ipsum.com">Lorem ipsum</a></li>
+      </ul>
+    </details>
+  </article>
+</main>
+</body>
+</html>

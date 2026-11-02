@@ -1,0 +1,70 @@
+<nav class="main-navigation">
+    <div class="nav-left-group">
+        <input type="checkbox" id="menu-toggle" class="menu-checkbox">
+        <label for="menu-toggle" class="menu-close-overlay" aria-hidden="true"></label>
+        <label for="menu-toggle" class="hamburger-icon" aria-label="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <a href="/" class="home-title" data-menu-name="Homepage">HOMEPAGE</a>
+        <ul class="menu-left">
+            <li>
+                <a href="/" aria-label="Homepage">
+                    <svg width="25" height="18" viewBox="0 0 26 24" fill="none" stroke="currentColor" stroke-width="2.5" class="feather-home-square">
+                        <path d="M13 2L2 12h3v10h16V12h3L13 2z"></path>
+                        <path d="M10 22v-7h6v7"></path>
+                    </svg>
+                </a>
+            </li>
+{{SEO_MENU_LI}}        </ul>         
+    </div>
+</nav>
+<div class="container">
+    <header>
+        <p class="kicker" id="active-page-title">Navigation Hub</p>
+    </header>
+</div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const pageTitle = document.getElementById("active-page-title");
+    const menuList = document.querySelector('.menu-left');
+    const mainTag = document.querySelector('main');
+    
+    let currentActiveText = "Homepage";
+    if (mainTag && mainTag.hasAttribute('data-page')) {
+        currentActiveText = mainTag.getAttribute('data-page');
+    }
+
+    function setNavpath(text) {
+        pageTitle.textContent = `Retro Computer · ${text}`;
+        pageTitle.style.setProperty('color', 'var(--accent-2)', 'important');
+        pageTitle.style.setProperty('font-weight', 'normal', 'important');            
+    }
+
+    setNavpath(currentActiveText);
+
+    if (menuList) {
+        const menuLinks = menuList.querySelectorAll('a[data-menu-name]');
+        
+        menuLinks.forEach(link => {
+            const menuName = link.getAttribute('data-menu-name');
+            
+            if (menuName.toLowerCase() === currentActiveText.toLowerCase()) {
+                link.classList.add('active-nav-item');
+            }
+
+            link.addEventListener('mouseenter', () => setNavpath(menuName));
+            link.addEventListener('mouseleave', () => setNavpath(currentActiveText));
+        });
+    }
+
+    const menuToggle = document.getElementById('menu-toggle');
+    const navGroup = document.querySelector('.nav-left-group');
+    if (menuToggle && navGroup) {
+        navGroup.addEventListener('mouseleave', () => {
+            if (menuToggle.checked) menuToggle.checked = false;
+        });
+    }
+});
+</script>
