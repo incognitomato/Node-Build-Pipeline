@@ -1,6 +1,6 @@
 # Node-Build-Pipeline
 
-A **zero-dependency Node.js static site generator** built to compile the [CRT & CATS](https://retro.tomverse.de) blog experiment. The pipeline uses a custom `build.js` engine to parse templates, inject production JSON-LD schema layouts, and update the global sitemap. It isolates draft code paths safely until components are ready for indexing.
+A **zero-dependency Node.js static site generator** built to compile the <a href="https://retro.tomverse.de" target="_blank" rel="noopener">[CRT & CATS]</a> blog experiment. The pipeline uses a custom `build.js` engine to parse templates, inject production JSON-LD schema layouts, and update the global sitemap. It isolates draft code paths safely until components are ready for indexing.
 
 This is a simplified, fully working architectural example.
 
@@ -62,7 +62,7 @@ A successful compilation loop will output the following message logs directly in
 ## 🌐 Live Deployment
 
 The compiled production output of this build pipeline is deployed live and can be browsed at:  
-👉 **Blog experiment hosted at [https://retro.tomverse.de](https://retro.tomverse.de)**
+👉 **Blog experiment hosted at <a href="https://retro.tomverse.de" target="_blank" rel="noopener">[https://retro.tomverse.de]]</a>**
 
 ***
 
